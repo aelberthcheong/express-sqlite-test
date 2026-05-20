@@ -1,0 +1,16 @@
+{
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "start": "nodemon main.js",
+        "setup": "node setup.js"
+    },
+    "dependencies": {
+        "express": "^5.2.1",
+        "nanoid": "^5.1.11",
+        "swagger-ui-express": "^5.0.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14"
+    }
+}

@@ -1,0 +1,13 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE authors (
+id TEXT PRIMARY KEY,
+name TEXT
+);
+CREATE TABLE quotes (
+id TEXT PRIMARY KEY,
+author_id TEXT,
+text TEXT,
+FOREIGN KEY (author_id) REFERENCES authors (id) ON DELETE CASCADE
+);
+COMMIT;

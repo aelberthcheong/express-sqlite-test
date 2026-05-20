@@ -1,0 +1,286 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Review Week 10",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/quotes": {
+            "get": {
+                "summary": "Ambil quote(s)",
+                "responses": {
+                    "200": {
+                        "description": "Direktori quote(s)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": { "type": "string" },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "rows": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id":     { "type": "string" },
+                                                            "text":   { "type": "string" },
+                                                            "author": { "type": "string" }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": { "description": "quote(s) tidak ditemukan" }
+                }
+            },
+            "post": {
+                "summary": "Tambah quote baru",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["authorId", "text"],
+                                "properties": {
+                                    "authorId": { "type": "string" },
+                                    "text":     { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Quote telah diciptakan" ,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": { "type": "string" },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": { "type": "string" }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": { "description": "Bad request" }
+                }
+            }
+        },
+        "/api/quotes/{id}": {
+            "get": {
+                "summary": "Ambil sebuah quote",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sebuah quote",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": { "type": "string" },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "row": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id":     { "type": "string" },
+                                                        "text":   { "type": "string" },
+                                                        "author": { "type": "string" }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": { "description": "Quote tidak ditemukan" }
+                }
+            },
+            "put": {
+                "summary": "Perbarui sebuah quote",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["authorId", "text"],
+                                "properties": {
+                                    "authorId": { "type": "string" },
+                                    "text":     { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Quote diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": { "type": "string" },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": { "type": "string" }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": { "description": "Bad request" },
+                    "404": { "description": "Quote tidak ditemukan" }
+                }
+            },
+            "delete": {
+                "summary": "Hapus sebuah quote",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Quote dihapuskan" },
+                    "400": { "description": "Bad request" },
+                    "404": { "description": "Quote tidak ditemukan" }
+                }
+            }
+        },
+        "/api/authors": {
+            "get": {
+                "summary": "Ambil quote(s)",
+                "responses": {
+                    "200": {
+                        "description": "Direktori author(s)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": { "type": "string" },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "rows": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id":   { "type": "string" },
+                                                            "name": { "type": "string" }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": { "description": "author(s) tidak ditemukan" }
+                }
+            },
+            "post": {
+                "summary": "Tambah author baru",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["name"],
+                                "properties": {
+                                    "name": { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Author telah diciptakan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": { "type": "string" },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": { "type": "string" }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": { "description": "Author sudah ada atau bad request" }
+                }
+            }
+        },
+        "/api/authors/{id}": {
+            "delete": {
+                "summary": "Hapus seorang author",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Author dihapuskan" },
+                    "400": { "description": "Bad request" },
+                    "404": { "description": "Author tidk ditemukan" }
+                }
+            }
+        }
+    }
+}
