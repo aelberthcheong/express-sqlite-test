@@ -2,7 +2,6 @@ import { DatabaseSync } from "node:sqlite";
 import { writeFileSync, readFileSync } from "node:fs";
 import { nanoid } from "nanoid";
 
-// New-Item data.db -ErrorAction SilentlyContinue
 try { writeFileSync("data.db", "", { flag: 'ax' }) } catch { process.exit(0) }
 
 const db = new DatabaseSync("data.db");
